@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 require('dotenv').config();
 
-const https = require('https')
 var search = require('youtube-search');
 
 
@@ -12,7 +11,7 @@ const youtubeApi = google.youtube({
   auth: "AIzaSyDKkkKM32mBBk8z3TSE3Orr4-IgYOAOkHQ",
 })
 
-console.log(process.env.TOKEN);
+//console.log(process.env.TOKEN);
 
 
 // var resyoutube = youtubeApi.search.list({part: "hello world"});
@@ -38,16 +37,22 @@ client.on("message", async (msg) => {
 
       search(str,opts,(err,results)=>{
         if(err){
-          console.log(err);
           msg.reply("An Error Occurred");
         }else{
-          console.log(results);
+          var arr = results.filter(r=>r.kind=="youtube#video");
+          if(results.length==0) msg.reply("No results found!")
+          else{
+            var obj = arr[0];
+            msg.reply(`Successfully requested song: \"${obj.title}\". URL: ${obj.link}`)
+          }
+          
         }
       })
     }
-  }else{
-    msg.reply("Use the \"!request\" command, followed by a youtube URL to add a song to the playlist!")
   }
+  // else{
+  //   msg.reply("Use the \"!request\" command, followed by a youtube URL to add a song to the playlist!")
+  // }
 })
   
 client.login(process.env.TOKEN); 
