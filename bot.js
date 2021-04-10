@@ -25,9 +25,11 @@ client.on("ready", () => {
 
 client.on("message", async (msg) => {
   console.log(msg.content);
-  if(/^!request /.test(msg.content)){
+  if(msg.content.startsWith(`${prefix}request`)){
     console.log("REQUESTING!")
     var str = msg.content.slice(9);//"!request " is 10 characters
+    console.log(str); 
+
     if(/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/.test(str)){
       msg.reply(`Valid Youtube URL: ${str}`);
     }else{
