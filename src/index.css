@@ -1,3 +1,12 @@
+:root{
+  --bg-color: #222;
+  --pink-color: rgb(231, 66, 196);
+  --blue-color: rgb(0, 193, 207);
+  --yellow-color: rgb(240, 240, 0);
+  
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
