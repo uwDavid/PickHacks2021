@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -14,11 +15,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "socket.io": "^4.0.1",
     "web-vitals": "^1.1.1",
-    "youtube-search": "^1.1.6",
-    "socket.io": "^4.0.1"
+    "youtube-search": "^1.1.6"
   },
-  "proxy":"http://localhost:5000",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -42,6 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:5000"
+  }
 }

@@ -1,14 +1,16 @@
 const Discord = require("discord.js"); 
 const client = new Discord.Client();
 const {prefix} = require('./config.json'); 
+const axios = require('axios').default;
 require('dotenv').config();
 
 const token = process.env.TOKEN;
 const apiKey = process.env.API_KEY; 
+const tempKey = process.env.TEMP; 
 var search = require('youtube-search');
 
-console.log(token);
-console.log(apiKey);
+// console.log(token);
+// console.log(apiKey);
 
 const {google} = require('googleapis');
 const youtubeApi = google.youtube({
@@ -16,9 +18,15 @@ const youtubeApi = google.youtube({
   auth: `${apiKey}`,
 })
 
+const url = 'https://www.googleapis.com/youtube/v3/playlists'; 
+const playlistID = 'PLtUHWpjOGp66jtDY5-EDW1fv7FS59WUND';
+const playlistURL = 'https://www.youtube.com/playlist?list=PLtUHWpjOGp66jtDY5-EDW1fv7FS59WUND'; 
+const channelID = 'UC1Ta0brsoOlOlDrTJXL681A'; 
+
 // var resyoutube = youtubeApi.search.list({part: "hello world"});
 // console.log(resyoutube)
 
+// Bot methods
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
@@ -34,6 +42,7 @@ client.on("message", async (msg) => {
       var opts = {
         maxResults: 10,
         key: apiKey,
+        order: 'viewCount',
         part: "snippet"
       }
 
@@ -45,7 +54,8 @@ client.on("message", async (msg) => {
           if(results.length==0) msg.reply("No results found!")
           else{
             var obj = arr[0];
-            msg.reply(`Successfully requested song: \"${obj.title}\". URL: ${obj.link}`)
+            let videoID = obj.id;
+            msg.reply(`Successfully requested song: \"${obj.title}\". URL: ${obj.link}\nView our playlist here: `);
           }
           
         }
@@ -54,5 +64,14 @@ client.on("message", async (msg) => {
   }
 })
 
-client.login(token); 
+client.on('guildMemberAdd', member =>{
+  channel = member.guild.channels.cache.get("channel id");
+  channel.send("Welcome " + member.displayName + "\n Current # of hackers: " + member.guild.memberCount);
+})
 
+
+client.on('error', error =>{
+  channel.send("No noes! Error occurred.\nError code: " + error);
+})
+
+client.login(token); 
