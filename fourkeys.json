@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "southern-guild-192001",
+  "private_key_id": "f3e90d3bf3949cc568c1ad60b802535c717a5bf3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCQYnBqyMRqpQZb\naPuEOHNd8MI3CfOYr6oOr/pOd6i+0sD8pmD5YOy2ezLnGNOjKaIlSzFU8lM/A0gR\nSyxYDL24iJ23JWyc5GIsQ83/FzuBEcDgNB755N25Iv6mp8OmmeNxDHrPoPAeeGYh\nJDDEXM3/68R0nA1Dfbpn2fhrf52X7SX77NF3mzlkj1S54YiI5SoIiljxD7r6MhRY\nTBUEGgYQb5Nzr9LylP9iNtNvbjjH5xzxAjCMTCe1vnNQbFhMuWGOc9k5arctE4Mv\nccSCuUixds/cIxHy4G4Yc9L9jpmxCrp28DaM9bSlPnzzq+E3cnDpj21rH6LEXMOn\nO44C9FsDAgMBAAECggEAQXCUYhm3yFweWvzkjmNliozOAdMdWLU5fumsqbbbQQ3V\nkU05g521++kvw4VBmuCKUJvZcpZYO6WZmtj28rtnm8UzsmggZ6Wth0F+EqFtg0zQ\nHe4RohJkmf4t68v6xb5W0wykdwmK+0x3gYrdHYqwhU9PHckCy/WmsF4fFV3kSBBy\nJo+g5YED7L/7HWNlUwIaRIK7QrAZyGOAk0Yt8YlhEBiFJJNaoJn6RpdwvqiGQd+e\nm0saXkHI+YHut5gu/q96yjo+y6amniaVW/CWsQKGPkQot7G1IjRnsC9vK3xKiK8I\nuExx+faMm3wleB8VEkUfAPExYpuQD8CSC8uvc6ABpQKBgQDI5AD1ZRG7e+U29UA+\nebAsXSFvaeN4ln8k7+2+6MWxL0gtrt2UkSPMPZtCDqBzrm66DyY8e8LEflUSpDKq\n2msCDs88vYLK3CQ24KPCbfMcmPwaJ4CSXlzGZluMtuxblZ1ZPmSplW43WGtxKpOy\nocp9UwVasfQbxRgGyQPgEDRFFQKBgQC3/iqzsHEh2RDZoZmZiS1ELlM1Xgia1BLD\nxip34GSr4Rn5+NIy5rJIldPFRylRBZ1AiuRsiijo8W4bdQ4D7zXNR4lDt/Fmskmp\nwPzPUTfbW/RbHiBBwqLLb5WvCffn+VPZJzqmjlpe9VTVJoTJWB0pMu750mR+hthe\nzWwd38tVtwKBgQCpRm6EWMjLWUe4uomK21EW4NbGocwaFX5HaqDDqDLE7Zl9XQa7\nJF2swRCtZdPQBmCpCRDoEET6+5TF43QKQYe/sSjw/qNSOpONZla3A5zCMSrlAvo0\n26yDRUbJWG3rcjOnOorp1s+LdUb7kavo7qnIVoeBd8fBCqAHP6SzThQtTQKBgGQY\nNJjeox073mvW+x3Iv8R4wzGkP2AjgTXaJ55hh8LtydjwoUGpuVG9mKCZLwPx3vOO\n2+ekXc8kELeFPaOsTgOoKCeb+QracTKVV7NdRtriMpQjVn8P6MptoOvBq4kaXaAk\nNEcJ6GYCZy0yMEjs06hnGhT0fVFMAIfKj0fNSOwPAoGANgO2Q5zC7uOuIcgDJlHa\niF5F6yBoWaEnc5uZhNIJtSaKzr828DUrRSY0GxLlsAsrZrgHuetwJQrzHUCUc1Vr\npv6foOJQza7A2/glvZGf2mWc5jO3LJAsOhJhkt4f+M2ltMrvadj9LeLM56yNbO6t\nS0+chV5ksgLKk6XlZRBJJvE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "bot-apit@southern-guild-192001.iam.gserviceaccount.com",
+  "client_id": "103867269051819226729",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bot-apit%40southern-guild-192001.iam.gserviceaccount.com"
+}

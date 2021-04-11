@@ -4,6 +4,7 @@ const {prefix} = require('./config.json');
 const axios = require('axios').default;
 const {JWT} = require('google-auth-library'); 
 
+const https = require("https");
 require('dotenv').config();
 
 const token = process.env.TOKEN;
@@ -30,7 +31,9 @@ const youtubeApi = google.youtube({
   auth: auth,
 })
 
-const keys =  require('./keys.json');
+let keys =  require('./fourkeys.json');
+keys.private_key = keys.private_key.replace(new RegExp("\\\\n", "\g"), "\n");
+console.log(keys.private_key);
 
 async function main() {
   const client = new JWT({
@@ -41,6 +44,7 @@ async function main() {
     'https://www.googleapis.com/auth/youtube', 
     'https://www.googleapis.com/auth/youtube.force-ssl'],
   });
+  console.log(keys.project_id);
   const url = `https://dns.googleapis.com/dns/v1/projects/${keys.project_id}`;
   const res = await client.request({url});
   console.log(res.data);
@@ -78,6 +82,7 @@ client.on("message", async (msg) => {
 
       search(str,opts,(err,results)=>{
         if(err){
+          console.log(err);
           msg.reply("An Error Occurred");
         }else{
           var arr = results.filter(r=>r.kind=="youtube#video");
@@ -85,6 +90,40 @@ client.on("message", async (msg) => {
           else{
             var obj = arr[0];
             let videoID = obj.id;
+
+            //Start the request to firebase functions:
+
+            const data = JSON.stringify({
+              name: obj.title,
+              id: obj.id,
+            })
+            
+            const options = {
+              hostname: 'us-central1-translationeer.cloudfunctions.net',
+              port: 443,
+              path: '/app/pickhacks',
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': data.length
+              }
+            }
+            
+            const req = https.request(options, res => {
+              console.log(`statusCode: ${res.statusCode}`)
+            
+              // res.on('data', d => {
+              //   process.stdout.write(d)
+              // })
+            })
+            
+            req.on('error', error => {
+              console.error(error)
+            })
+            
+            req.write(data);
+            req.end()
+            
             msg.reply(`Successfully requested song: \"${obj.title}\". URL: ${obj.link}\nView our playlist here: `);
           }
           
@@ -124,8 +163,8 @@ client.login(token);
 //   console.log(resp.status);
 // })
 // .catch(err => {
-// //   console.log("Something wrong: "); 
-// // })
+// // //   console.log("Something wrong: "); 
+// // // })
 
 // youtubeApi.playlistItems.insert({
 //   "part": [
