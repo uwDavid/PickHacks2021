@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const {prefix} = require('./config.json'); 
 const axios = require('axios').default;
 
+const https = require("https");
 require('dotenv').config();
 
 const token = process.env.TOKEN;
@@ -59,6 +60,7 @@ client.on("message", async (msg) => {
 
       search(str,opts,(err,results)=>{
         if(err){
+          console.log(err);
           msg.reply("An Error Occurred");
         }else{
           var arr = results.filter(r=>r.kind=="youtube#video");
@@ -66,6 +68,40 @@ client.on("message", async (msg) => {
           else{
             var obj = arr[0];
             let videoID = obj.id;
+
+            //Start the request to firebase functions:
+
+            const data = JSON.stringify({
+              name: obj.title,
+              id: obj.id,
+            })
+            
+            const options = {
+              hostname: 'us-central1-translationeer.cloudfunctions.net',
+              port: 443,
+              path: '/app/pickhacks',
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': data.length
+              }
+            }
+            
+            const req = https.request(options, res => {
+              console.log(`statusCode: ${res.statusCode}`)
+            
+              // res.on('data', d => {
+              //   process.stdout.write(d)
+              // })
+            })
+            
+            req.on('error', error => {
+              console.error(error)
+            })
+            
+            req.write(data);
+            req.end()
+            
             msg.reply(`Successfully requested song: \"${obj.title}\". URL: ${obj.link}\nView our playlist here: `);
           }
           

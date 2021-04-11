@@ -9,15 +9,80 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  background-color: var(--bg-color);
+  color: white;
+  font-family: 'RocknRoll One', sans-serif;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace; */
+}
+
+header{
+  width: 100vw;
+  height: 10vh;
+  padding: 20px 3%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+h1{
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px white;
+}
+
+#icon{
+  height: 40px;
+  width: 40px;
+  margin-right: 20px;
+  background-image: url("./images/pickhackslogo.png");
+  background-size: contain;
+}
+
+main{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#right-side{
+  padding: 5%;
+  box-sizing: border-box;
+}
+
+#right-side ul{
+  list-style: none;
+}
+
+#right-side ul li{
+  background-color: black;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-shadow: 2px 3px 5px black;
+  margin: 20px 0px;
+}
+
+li h4{
+  font-size: 20px;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+li a{
+  color: white;
+  opacity: 0.8;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+li a:hover{
+  opacity: 1;
 }
