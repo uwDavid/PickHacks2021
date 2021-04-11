@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const {prefix} = require('./config.json'); 
 const axios = require('axios').default;
+
 require('dotenv').config();
 
 const token = process.env.TOKEN;
@@ -13,9 +14,19 @@ var search = require('youtube-search');
 // console.log(apiKey);
 
 const {google} = require('googleapis');
+const auth  = new google.auth.GoogleAuth(
+  {
+    keyFile: './keys.json', 
+    scopes: [
+    'https://www.googleapis.com/auth/youtubepartner',
+    'https://www.googleapis.com/auth/youtube', 
+    'https://www.googleapis.com/auth/youtube.force-ssl'
+  ]
+  }
+);
 const youtubeApi = google.youtube({
   version: "v3",
-  auth: `${apiKey}`,
+  auth: auth,
 })
 
 const url = 'https://www.googleapis.com/youtube/v3/playlists'; 
@@ -75,3 +86,58 @@ client.on('error', error =>{
 })
 
 client.login(token); 
+
+// axios({
+//   method: 'post', 
+//   url: url,
+//   data: {
+//     "snippet": {
+//       "playlistId": playlistID,
+//       "position": 0,
+//       "resourceId": {
+//         "kind": "youtube#video",
+//         "videoId": "M7FIvfx5J10"
+//       }
+//     }
+//   }
+// })
+// .then( resp => {
+//   console.log(resp.status);
+// })
+// .catch(err => {
+//   console.log("Something wrong: "); 
+// })
+
+youtubeApi.playlistItems.insert({
+  "part": [
+    "snippet"
+  ],
+  "resource": {
+    "snippet": {
+      "playlistId": playlistID,
+      "position": 0,
+      "resourceId": {
+        "kind": "youtube#video",
+        "videoId": "M7FIvfx5J10"
+      }
+    }
+  }
+})
+.then(function(response) {
+  console.log("Response:", response);
+})
+.catch( function(err) { console.error("Execute error", err); 
+});
+
+// youtubeApi.playlistItems.list({
+//   "part": [
+//     "snippet,contentDetails"
+//   ],
+//   "maxResults": 25,
+//   "playlistId": "PLBCF2DAC6FFB574DE"
+// })
+// .then(function(response) {
+//   // Handle the results here (response.result has the parsed body).
+//   console.log("Response", response);
+// },
+// function(err) { console.error("Execute error", err); });
