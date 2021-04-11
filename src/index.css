@@ -1,8 +1,8 @@
 :root{
   --bg-color: #222;
-  --pink-color: rgb(231, 66, 196);
-  --blue-color: rgb(0, 193, 207);
-  --yellow-color: rgb(240, 240, 0);
+  --pink-color: #e742c4;
+  --blue-color: #00c1cf;
+  --yellow-color: #f0f000;
   
 }
 
@@ -17,11 +17,16 @@ body {
   background-color: var(--bg-color);
   color: white;
   font-family: 'RocknRoll One', sans-serif;
+  overflow-x: hidden;
 }
 
 code {
   /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace; */
+}
+
+div, section{
+  box-sizing: border-box;
 }
 
 header{
@@ -50,12 +55,165 @@ h1{
 
 main{
   display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 5%;
+}
+
+@media (max-width: 1000px){
+  main{
+    grid-template-columns: 1fr;
+  }
+}
+
+#left-side{
+  padding: 10vh 3vw;
+}
+
+#jumbotron{
+  display: grid;
   grid-template-columns: 1fr 1fr;
+  box-sizing: border-box;
+}
+
+@media (max-width: 576px){
+  #jumbotron{
+    grid-template-columns: 1fr;
+  }
+}
+
+#j-image-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#j-image{
+  max-width: 80%;
+  height: auto;
+  background-color: white;
+  border-radius: 12%;
+}
+
+#j-right h2{
+  font-size: 5rem;
+}
+
+#second-section{
+  font-size: 2rem;
+  transform: rotateZ(-2deg);
+  margin-top: 3vh;
+  margin-bottom: 10vh;
+}
+
+#discord-header{
+  display: flex;
+  align-items: center;
+  margin-top: 20vh;
+}
+#discord-logo{
+  height: 20vh;
+  width: 20vh;
+  background: url("./images/discordlogo.jpg");
+  border-radius: 10px;
+  background-position: center;
+  background-size: contain;
+  margin: 0px 5%;
+  transform: rotateZ(10deg);
+}
+
+#discord-title{
+  text-align: left;
+}
+
+#discord-title h3{
+  font-size: 2rem;
+  margin: 0px;
+}
+
+#discord-title p{
+  font-size: 1rem;
+  margin: 10px 0px;
+  color: lightgrey;
+}
+
+#server-join{
+  padding: 10px 15px;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  background-color: #7289D9; /*discord purple*/
+  border-radius: 10px;  
+  display: flex;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  transition: all 0.3s;
+  box-shadow: 1px 1px 8px lightgray;
+  transform: rotateZ(1deg);
+}
+
+#server-join:hover{
+  opacity: 0.8;
+}
+
+#server-join #discordlogo-small{
+  background: url("./images/discordlogo.jpg");
+  height: 40px;
+  width: 40px;
+  background-size: contain;
+  background-color: #7289D9; /*discord purple*/
+  margin-right: 10px;
 }
 
 #right-side{
   padding: 5%;
   box-sizing: border-box;
+}
+
+#right-side h2{
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#live-text{
+  font-size: 1.5rem;
+  padding: 5px 15px;
+  color:red;
+  border: 4px solid red;
+  border-radius: 5px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+#live-text span{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: red;
+  display: block;
+  margin-right: 10px;
+  animation: flash infinite 1s;
+}
+
+@keyframes flash{
+  0%{
+    opacity: 1;
+  }
+  30%{
+    opacity: 1;
+  }
+
+  50%{
+    opacity: 0;
+  }
+
+  70%{
+    opacity: 1;
+  }
 }
 
 #right-side ul{
@@ -67,7 +225,8 @@ main{
   border-radius: 10px;
   padding: 10px 20px;
   box-shadow: 2px 3px 5px black;
-  margin: 20px 0px;
+  margin: 30px 0px;
+  position: relative;
 }
 
 li h4{
@@ -85,4 +244,77 @@ li a{
 
 li a:hover{
   opacity: 1;
+}
+
+li .timestamp{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: block;
+  padding: 3px 15px;
+  color: white;
+  background-color: #e742c4;
+  box-shadow: 2px 2px 5pc black;
+  font-size: 12px;
+  font-weight: 100;
+  border-radius: 15px;
+}
+
+#animated-typing{
+  background: url("./images/discordmessagebar.PNG");
+  width: 600px;
+  height: 40px;
+  background-size: contain;
+  margin: 20vh 0px;
+  border-radius: 10px;
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+  transform: rotateZ(-1deg);
+  box-shadow: 1px 1px 10px lightgray;
+}
+
+#animated-typing div{
+  background-color: #40444B;
+  margin-left: 40px;
+  padding: 0px 50px 0px 20px;
+}
+#animated-typing div p{
+  font-size: 16px;
+  margin: 0px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: lightgray;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+#animated-typing p::after {
+  content: "|";
+  position: absolute;
+  right: 0;
+  width: 100%;
+  text-align: left;
+  color: white;
+  background-color: #40444B;
+  animation: typing 4s steps(18) forwards,
+    caret 1s infinite;
+}
+
+
+@keyframes typing {
+	to { width: 0 }
+}
+@keyframes caret {
+	50% { color: transparent }
+}
+
+
+footer{
+  background-color: black;
+  padding: 3vh 5vw;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30vh;
 }
