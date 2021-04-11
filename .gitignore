@@ -15,6 +15,7 @@
 .DS_Store
 .env
 keys.json
+twokeys.json
 .env.local
 .env.development.local
 .env.test.local

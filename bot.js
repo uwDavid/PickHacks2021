@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const {prefix} = require('./config.json'); 
 const axios = require('axios').default;
+const {JWT} = require('google-auth-library'); 
 
 require('dotenv').config();
 
@@ -28,6 +29,24 @@ const youtubeApi = google.youtube({
   version: "v3",
   auth: auth,
 })
+
+const keys =  require('./keys.json');
+
+async function main() {
+  const client = new JWT({
+    email: keys.client_email,
+    key: keys.private_key,
+    scopes: ['https://www.googleapis.com/auth/cloud-platform',
+    'https://www.googleapis.com/auth/youtubepartner',
+    'https://www.googleapis.com/auth/youtube', 
+    'https://www.googleapis.com/auth/youtube.force-ssl'],
+  });
+  const url = `https://dns.googleapis.com/dns/v1/projects/${keys.project_id}`;
+  const res = await client.request({url});
+  console.log(res.data);
+}
+
+main().catch(console.error);
 
 const url = 'https://www.googleapis.com/youtube/v3/playlists'; 
 const playlistID = 'PLtUHWpjOGp66jtDY5-EDW1fv7FS59WUND';
@@ -105,36 +124,36 @@ client.login(token);
 //   console.log(resp.status);
 // })
 // .catch(err => {
-//   console.log("Something wrong: "); 
-// })
+// //   console.log("Something wrong: "); 
+// // })
 
-youtubeApi.playlistItems.insert({
-  "part": [
-    "snippet"
-  ],
-  "resource": {
-    "snippet": {
-      "playlistId": playlistID,
-      "position": 0,
-      "resourceId": {
-        "kind": "youtube#video",
-        "videoId": "M7FIvfx5J10"
-      }
-    }
-  }
-})
-.then(function(response) {
-  console.log("Response:", response);
-})
-.catch( function(err) { console.error("Execute error", err); 
-});
+// youtubeApi.playlistItems.insert({
+//   "part": [
+//     "snippet"
+//   ],
+//   "resource": {
+//     "snippet": {
+//       "playlistId": playlistID,
+//       "position": 0,
+//       "resourceId": {
+//         "kind": "youtube#video",
+//         "videoId": "M7FIvfx5J10"
+//       }
+//     }
+//   }
+// })
+// .then(function(response) {
+//   console.log("Response:", response);
+// })
+// .catch( function(err) { console.error("Execute error", err); 
+// });
 
 // youtubeApi.playlistItems.list({
 //   "part": [
 //     "snippet,contentDetails"
 //   ],
 //   "maxResults": 25,
-//   "playlistId": "PLBCF2DAC6FFB574DE"
+//   "playlistId": "PLBCF2DAC6FFB574DE"z
 // })
 // .then(function(response) {
 //   // Handle the results here (response.result has the parsed body).
