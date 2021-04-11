@@ -54,7 +54,7 @@ const youtubeApi = google.youtube({
 
 const url = 'https://www.googleapis.com/youtube/v3/playlists'; 
 const playlistID = 'PLtUHWpjOGp66jtDY5-EDW1fv7FS59WUND';
-const playlistURL = 'https://www.youtube.com/playlist?list=PLtUHWpjOGp66jtDY5-EDW1fv7FS59WUND'; 
+const playlistURL = 'https://pickhacks2021-273fd.web.app/'; 
 const channelID = 'UC1Ta0brsoOlOlDrTJXL681A'; 
 
 // var resyoutube = youtubeApi.search.list({part: "hello world"});
@@ -124,7 +124,7 @@ client.on("message", async (msg) => {
             req.write(data);
             req.end()
             
-            msg.reply(`Successfully requested song: \"${obj.title}\". URL: ${obj.link}\nView our playlist here: `);
+            msg.reply(`Successfully requested song: \"${obj.title}\".\nSong URL: <${obj.link}>\nView our playlist here: ${playlistURL}`);
           }
           
         }
