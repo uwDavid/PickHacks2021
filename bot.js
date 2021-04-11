@@ -31,26 +31,26 @@ const youtubeApi = google.youtube({
   auth: auth,
 })
 
-let keys =  require('./fourkeys.json');
-keys.private_key = keys.private_key.replace(new RegExp("\\\\n", "\g"), "\n");
-console.log(keys.private_key);
+// let keys =  require('./fourkeys.json');
+// keys.private_key = keys.private_key.replace(new RegExp("\\\\n", "\g"), "\n");
+// console.log(keys.private_key);
 
-async function main() {
-  const client = new JWT({
-    email: keys.client_email,
-    key: keys.private_key,
-    scopes: ['https://www.googleapis.com/auth/cloud-platform',
-    'https://www.googleapis.com/auth/youtubepartner',
-    'https://www.googleapis.com/auth/youtube', 
-    'https://www.googleapis.com/auth/youtube.force-ssl'],
-  });
-  console.log(keys.project_id);
-  const url = `https://dns.googleapis.com/dns/v1/projects/${keys.project_id}`;
-  const res = await client.request({url});
-  console.log(res.data);
-}
+// async function main() {
+//   const client = new JWT({
+//     email: keys.client_email,
+//     key: keys.private_key,
+//     scopes: ['https://www.googleapis.com/auth/cloud-platform',
+//     'https://www.googleapis.com/auth/youtubepartner',
+//     'https://www.googleapis.com/auth/youtube', 
+//     'https://www.googleapis.com/auth/youtube.force-ssl'],
+//   });
+//   console.log(keys.project_id);
+//   const url = `https://dns.googleapis.com/dns/v1/projects/${keys.project_id}`;
+//   const res = await client.request({url});
+//   console.log(res.data);
+// }
 
-main().catch(console.error);
+// main().catch(console.error);
 
 const url = 'https://www.googleapis.com/youtube/v3/playlists'; 
 const playlistID = 'PLtUHWpjOGp66jtDY5-EDW1fv7FS59WUND';
