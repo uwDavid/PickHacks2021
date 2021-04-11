@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const {prefix} = require('./config.json'); 
 const axios = require('axios').default;
+const https = require("https");
 require('dotenv').config();
 
 const token = process.env.TOKEN;
@@ -26,38 +27,6 @@ const channelID = 'UC1Ta0brsoOlOlDrTJXL681A';
 // var resyoutube = youtubeApi.search.list({part: "hello world"});
 // console.log(resyoutube)
 
-
-//FIREBASE CODE:
-
-const admin = require('firebase-admin');
-const db = admin.database();
-
-admin.initializeApp({
-  databaseURL: 'https://pickhacks2021-273fd-default-rtdb.firebaseio.com/',
-})
-
-async function addToDatabase(songName,songURL){
-  try{
-    var songRef = db.ref("songs/"+songURL);
-    var existingData = await songRef.get();
-    var requests = 1;
-    if(existingData.exists()){
-      requests = existingData.val()["requests"] +1 || 1;
-    }
-    var d = new Date()
-    songRef.set({
-      name: songName,
-      url: songURL,
-      requests: requests,
-      time: d.getTime(),
-    })
-
-  }catch(e){
-    console.log("Firebase Database Error");
-    console.log(e);
-  }
-}
-
 // Bot methods
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
@@ -80,6 +49,7 @@ client.on("message", async (msg) => {
 
       search(str,opts,(err,results)=>{
         if(err){
+          console.log(err);
           msg.reply("An Error Occurred");
         }else{
           var arr = results.filter(r=>r.kind=="youtube#video");
@@ -87,7 +57,40 @@ client.on("message", async (msg) => {
           else{
             var obj = arr[0];
             let videoID = obj.id;
-            addToDatabase(obj.title, obj.link);
+
+            //Start the request to firebase functions:
+
+            const data = JSON.stringify({
+              name: obj.title,
+              id: obj.id,
+            })
+            
+            const options = {
+              hostname: 'us-central1-translationeer.cloudfunctions.net',
+              port: 443,
+              path: '/app/pickhacks',
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': data.length
+              }
+            }
+            
+            const req = https.request(options, res => {
+              console.log(`statusCode: ${res.statusCode}`)
+            
+              // res.on('data', d => {
+              //   process.stdout.write(d)
+              // })
+            })
+            
+            req.on('error', error => {
+              console.error(error)
+            })
+            
+            req.write(data);
+            req.end()
+            
             msg.reply(`Successfully requested song: \"${obj.title}\". URL: ${obj.link}\nView our playlist here: `);
           }
           
