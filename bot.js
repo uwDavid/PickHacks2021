@@ -66,7 +66,7 @@ client.on("ready", () => {
 })
 
 client.on("message", async (msg) => {
-  console.log(msg.content);
+  //console.log(msg.content);
   if(msg.content.startsWith(`${prefix}request`)){
     var str = msg.content.slice(9);//"!request " is 10 characters
 
@@ -82,7 +82,7 @@ client.on("message", async (msg) => {
 
       search(str,opts,(err,results)=>{
         if(err){
-          console.log(err);
+          // console.log(err);
           msg.reply("An Error Occurred");
         }else{
           var arr = results.filter(r=>r.kind=="youtube#video");
@@ -110,7 +110,7 @@ client.on("message", async (msg) => {
             }
             
             const req = https.request(options, res => {
-              console.log(`statusCode: ${res.statusCode}`)
+              //console.log(`statusCode: ${res.statusCode}`)
             
               // res.on('data', d => {
               //   process.stdout.write(d)
@@ -118,7 +118,7 @@ client.on("message", async (msg) => {
             })
             
             req.on('error', error => {
-              console.error(error)
+              //console.error(error)
             })
             
             req.write(data);
